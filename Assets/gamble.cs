@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gamble : MonoBehaviour
 {
@@ -45,9 +46,12 @@ public class gamble : MonoBehaviour
             warning.text = "You can't bet 0!";
         }
 
-
-
-        if(parsedInt < 0)
+        if(parsedInt == 6969420) /*ignore this*/
+        {
+            warning.text = "Funny Number!!!!!!",
+            textPoints = 69696969
+        } else { 
+                    if(parsedInt < 0)
         {
             fail.PlayOneShot(failSounds);
             warning.text = "You can't bet a negative number!";
@@ -71,12 +75,19 @@ public class gamble : MonoBehaviour
                 }
             }
         }
+        }
 
     }
 
     public void FixedUpdate()
     {
         points.text = "Score:"+textPoints.ToString();
+
+        if(textPoints < 0) 
+        {
+            //back to start manager if user loses all points
+            SceneManager.LoadScene(0);
+        }
     }
 
 }
